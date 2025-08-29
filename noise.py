@@ -5,6 +5,7 @@ import numpy as np
 #Quality loss from incrementing x by 1 from 11 through 19
 
 im = cv.imread('photos/imageNoise.jpg')
+cv.imshow('noise', im)
 im2 = cv.imread('photos/imageNoise.jpg')
 
 x = 10
@@ -15,15 +16,11 @@ def showBlur(ds):
     cv.imshow('denoised' + str(x), ds)
 
 
-def showImg(ab):
-    cv.imshow('noise' + str(x), im)
-    cv.imshow('denoised' + str(x), dst)
-
 #Params
     
 dst = cv.fastNlMeansDenoisingColored(im2,None, x, x,7,21)
 while y is True and x < 20:
-    x += 1
+    x += 2
     dst = cv.fastNlMeansDenoisingColored(im2,None, x, x,7,21)
     showBlur(dst)
     if x >= 20:
@@ -32,7 +29,6 @@ while y is True and x < 20:
 #dst = cv.fastNlMeansDenoisingColored(im2, None, fStrengthGrey, fStrengthColor, winSizeOdd, winSizeEven)
 
 cv.waitKey(0)
-
 
 
 
